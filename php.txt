@@ -1,0 +1,89 @@
+DROP DATABASE IF EXISTS turismociudad;
+
+CREATE DATABASE IF NOT EXISTS turismociudad;
+
+USE turismociudad;
+
+CREATE TABLE usuario
+     (mail VARCHAR (40) NOT NULL, 
+contrasena INT NOT NULL, 
+id_usuario INT AUTO_INCREMENT, 
+    PRIMARY KEY (id_usuario));
+    
+CREATE TABLE localidad
+     (nombre VARCHAR (40) NOT NULL, 
+id_localidad INT AUTO_INCREMENT, 
+    PRIMARY KEY (id_localidad));
+
+CREATE TABLE excursiones
+     (nombre VARCHAR (40) NOT NULL, 
+costo INT NOT NULL, 
+id_excursiones INT AUTO_INCREMENT, 
+horario_desde TIME NOT NULL,
+horario_hasta TIME NOT NULL,
+    PRIMARY KEY (id_excursiones));
+
+CREATE TABLE alojamiento
+	(nombre VARCHAR (200),
+calificacion FLOAT,
+telefono INT,
+direccion VARCHAR (200),
+id_alojamiento INT AUTO_INCREMENT,
+id_localidad INT,
+    PRIMARY KEY (id_alojamiento),
+	FOREIGN KEY (id_localidad)
+		REFERENCES localidad (id_localidad));
+     
+CREATE TABLE consulta
+	(id_consulta INT AUTO_INCREMENT,
+texto_consulta VARCHAR (3000),
+id_usuario INT,
+id_alojamiento INT,
+id_excursiones INT,
+      PRIMARY KEY (id_consulta),
+FOREIGN KEY (id_usuario)
+		REFERENCES usuario (id_usuario),
+FOREIGN KEY (id_alojamiento)
+		REFERENCES alojamiento (id_alojamiento),
+FOREIGN KEY (id_excursiones)
+		REFERENCES excursiones (id_excursiones));
+
+INSERT INTO usuario (mail, contrasena)
+VALUES ("valentina@gmail.com", 24681012),
+	("carlos@gmail.com", 24681011),
+	("fraco@gmail.com", 24681013),
+	("sofia@gmail.com",24681014),
+	("jose@gmail.com",24681015),
+	("milena@gmail.com",24681016);
+
+INSERT INTO localidad (nombre)
+VALUES ("Villa Carlos Paz"),
+	("La Falda"),
+	("Cosuin"),
+	("Tanti"),
+	("Alta Gracia"),
+	("Cruz Del Eje");
+
+INSERT INTO excursiones (nombre, costo, horario_desde, horario_hasta)
+VALUES ("valentina", 1500, "11:00", "12:00"),
+	("carlos", 1500, "11:00", "12:00"),
+	("franco", 1500, "11:00", "12:00"),
+	("sofia", 1500, "11:00", "12:00"),
+	("jose", 1500, "11:00", "12:00"),
+	("milena", 1500, "11:00", "12:00");
+
+INSERT INTO alojamiento (nombre, telefono, direccion)
+VALUES ("Eleton", 487659, "San Martin 150"),
+	("Palmas", 487658, "San Martin 151"),
+	("Portal Del Lago", 487657, "San Martin 152"),
+	("Costa Azul", 487656, "San Martin 153"),
+	("Los Sauses", 487655, "San Martin 154"),
+	("Piazza Hotel", 487654, "San Martin 155");
+
+INSERT INTO consulta (texto_consulta, id_usuario)
+VALUES ("Hola. Queria saber si tiene habitacion para 5 personas.", 1),
+	("Muy buena su atencion.", 2),
+	("Muy buena pagina.", 3),
+	("Me gusto y me sirvio mucho para informarme.", 4),
+	("Exelnte, la recomiendo.", 5),
+	("Me encanto para saber mas sobre mi ciudad.", 6);
