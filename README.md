@@ -6,6 +6,4 @@ Nos designamos creando una página turística dividida en 5 secciones a través 
 app usada para programar: visual studio code
 
 base de datos: xampp
-
-
 sede: ProA Villa Carlos Paz
