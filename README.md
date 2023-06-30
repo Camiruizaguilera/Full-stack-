@@ -7,3 +7,5 @@ app usada para programar: visual studio code
 
 base de datos: xampp
 
+
+sede: ProA Villa Carlos Paz
